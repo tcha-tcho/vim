@@ -92,7 +92,7 @@ snoremap ` b<BS>`
 vmap a% [%v]%
 nmap cs <Plug>Csurround
 nmap ds <Plug>Dsurround
-map f %
+map fj %
 nmap gx <Plug>NetrwBrowseX
 vnoremap <silent> gC :TCommentMaybeInline
 nnoremap <silent> gCc :let w:tcommentPos = getpos(".") | set opfunc=tcomment#OperatorLineAnywayg@$
@@ -151,6 +151,7 @@ inoremap   :TComment
 inoremap <silent> p :norm! m`vip:TComment``
 inoremap <silent>  :TComment
 map! ;;  " map ;; to Esc
+cmap dojo call Dojo()
 map! ij  " map jj to Esc
 map! ii  " map ii to Esc
 iabbr xdate =strftime("%d/%m/%y %H:%M:%S")
@@ -179,7 +180,7 @@ set langmenu=none
 set laststatus=2
 set mouse=a
 set printexpr=system('open\ -a\ Preview\ '.v:fname_in)\ +\ v:shell_error
-set report=0
+set report=3
 set ruler
 set runtimepath=~/.vim,~/.vim/bundle/NERD_tree,~/.vim/bundle/ack,~/.vim/bundle/endwise,~/.vim/bundle/msanders-snipmate.vim,~/.vim/bundle/processing,~/.vim/bundle/taglist_45,~/.vim/bundle/tpope-vim-ragtag,~/.vim/bundle/tpope-vim-rails,~/.vim/bundle/tpope-vim-surround,~/.vim/bundle/tsaleh-vim-tcomment,~/.vim/bundle/vim-as,~/.vim/bundle/vim-fugitive,~/.vim/bundle/vim-fuzzyfinder,~/.vim/bundle/vim-git,~/.vim/bundle/vim-markdown,~/.vim/bundle/vim-peepopen,~/.vim/bundle/vim-rooter,/Applications/MacVim.app/Contents/Resources/vim/vimfiles,/Applications/MacVim.app/Contents/Resources/vim/runtime,/Applications/MacVim.app/Contents/Resources/vim/vimfiles/after,~/.vim/bundle/msanders-snipmate.vim/after,~/.vim/after
 set scrolloff=3
@@ -201,47 +202,37 @@ set wildmode=list:longest
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/vim/colors
+cd ~/
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 ir_black.vim
-args ir_black.vim
-edit ir_black.vim
+silent! argdel *
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
 argglobal
-vnoremap <buffer> <silent> [" :exe "normal! gv"|call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
-nnoremap <buffer> <silent> [" :call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
-vnoremap <buffer> <silent> [] m':exe "normal! gv"|call search('^\s*endf*\%[unction]\>', "bW")
-nnoremap <buffer> <silent> [] m':call search('^\s*endf*\%[unction]\>', "bW")
-vnoremap <buffer> <silent> [[ m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "bW")
-nnoremap <buffer> <silent> [[ m':call search('^\s*fu\%[nction]\>', "bW")
-vnoremap <buffer> <silent> ]" :exe "normal! gv"|call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
-nnoremap <buffer> <silent> ]" :call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
-vnoremap <buffer> <silent> ][ m':exe "normal! gv"|call search('^\s*endf*\%[unction]\>', "W")
-nnoremap <buffer> <silent> ][ m':call search('^\s*endf*\%[unction]\>', "W")
-vnoremap <buffer> <silent> ]] m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "W")
-nnoremap <buffer> <silent> ]] m':call search('^\s*fu\%[nction]\>', "W")
+enew
+cmap <buffer> again call KataRestart()
+cmap <buffer> help call HelpScreen()
+cmap <buffer> stop call StopDojo()
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
 setlocal balloonexpr=
 setlocal nobinary
-setlocal bufhidden=
+setlocal bufhidden=hide
 setlocal buflisted
-setlocal buftype=
+setlocal buftype=nofile
 setlocal cindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
+setlocal cinoptions=j1,J1
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",:\"
-setlocal commentstring=\"%s
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+setlocal commentstring=//%s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -259,8 +250,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'vim'
-setlocal filetype=vim
+if &filetype != 'javascript'
+setlocal filetype=javascript
 endif
 setlocal foldcolumn=0
 setlocal foldenable
@@ -281,10 +272,10 @@ setlocal iminsert=2
 setlocal imsearch=2
 setlocal include=
 setlocal includeexpr=
-setlocal indentexpr=GetVimIndent()
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,=end,=else,=cat,=fina,=END,0\\
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
 setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255,#
+setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
@@ -298,7 +289,7 @@ setlocal nrformats=octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=
+setlocal omnifunc=javascriptcomplete#CompleteJS
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -319,26 +310,20 @@ setlocal spellfile=
 setlocal spelllang=en
 setlocal statusline=
 setlocal suffixesadd=
-setlocal swapfile
+setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'vim'
-setlocal syntax=vim
+if &syntax != 'javascript'
+setlocal syntax=javascript
 endif
 setlocal tabstop=2
 setlocal tags=
-setlocal textwidth=78
+setlocal textwidth=0
 setlocal thesaurus=
 setlocal noundofile
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 92 - ((49 * winheight(0) + 26) / 53)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-92
-normal! 078l
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

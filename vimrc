@@ -127,7 +127,7 @@ imap <Tab> <c-n>
 imap <S-Tab> <c-p>
 
 nmap <tab> <c-w>
-map f %
+map fj %
 
 " Uncomment to use Jamis Buck's file opening plugin
 map <Leader>t :FufFile **/<CR>
