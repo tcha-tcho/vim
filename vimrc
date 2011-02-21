@@ -235,7 +235,6 @@ com! -nargs=1 SetSession :let g:SessionFileName = g:PathToSessions . "/" . <args
 " .. and a command to unset it
 com! -nargs=0 UnsetSession :let g:SessionFileName = ""
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Useful abbrevs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
