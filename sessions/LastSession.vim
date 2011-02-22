@@ -2,22 +2,11 @@ let SessionLoad = 1
 if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-imap <D-BS> 
-imap <M-BS> 
-imap <M-Down> }
-inoremap <D-Down> <C-End>
-imap <M-Up> {
-inoremap <D-Up> <C-Home>
-noremap! <M-Right> <C-Right>
-noremap! <D-Right> <End>
-noremap! <M-Left> <C-Left>
-noremap! <D-Left> <Home>
 inoremap <silent> <Plug>ragtagXmlV ="&#".getchar().";"
 inoremap <BS> =Backspace()
 inoremap <C-Up> :m-2==gi
 inoremap <C-Down> :m+==gi
 inoremap <silent> <S-Tab> =BackwardsSnippet()
-map! <D-v> *
 noremap  h
 snoremap <silent> 	 i<Right>=TriggerSnippet()
 nmap 	 
@@ -110,14 +99,6 @@ nmap ySs <Plug>YSsurround
 nmap yss <Plug>Yssurround
 nmap yS <Plug>YSurround
 nmap ys <Plug>Ysurround
-map <M-Down> }
-noremap <D-Down> <C-End>
-map <M-Up> {
-noremap <D-Up> <C-Home>
-noremap <M-Right> <C-Right>
-noremap <D-Right> <End>
-noremap <M-Left> <C-Left>
-noremap <D-Left> <Home>
 snoremap <Left> bi
 snoremap <Right> a
 snoremap <BS> b<BS>
@@ -130,11 +111,6 @@ vnoremap <C-Down> :m'>+gv=gv
 nnoremap <C-Up> :m-2==
 nnoremap <C-Down> :m+==
 xmap <S-Tab> <gv
-xmap <BS> "-d
-vmap <D-x> "*d
-vmap <D-c> "*y
-vmap <D-v> "-d"*P
-nmap <D-v> "*P
 imap S <Plug>ISurround
 imap s <Plug>Isurround
 inoremap <silent> 	 =TriggerSnippet()
@@ -151,6 +127,10 @@ inoremap   :TComment
 inoremap <silent> p :norm! m`vip:TComment``
 inoremap <silent>  :TComment
 map! ;;  " map ;; to Esc
+map è 5h
+map ì 5l
+map ê 5j
+map ë 5k
 cmap dojo call Dojo()
 map! ij  " map jj to Esc
 map! ii  " map ii to Esc
@@ -165,29 +145,20 @@ set backspace=2
 set backup
 set backupdir=/tmp
 set cindent
-set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-set commentstring=//%s
 set directory=/tmp
-set noequalalways
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
-set guioptions=egmLt
-set guitablabel=%M%t
-set helplang=en
 set hidden
 set history=1000
 set hlsearch
 set ignorecase
 set incsearch
-set indentkeys=o,O,*<Return>,<>>,{,},!^F
-set langmenu=none
 set laststatus=2
+set modelines=0
 set mouse=a
-set operatorfunc=tcomment#OperatorLine
-set printexpr=system('open\ -a\ Preview\ '.v:fname_in)\ +\ v:shell_error
 set report=0
 set ruler
-set runtimepath=~/.vim,~/.vim/bundle/NERD_tree,~/.vim/bundle/ack,~/.vim/bundle/endwise,~/.vim/bundle/msanders-snipmate.vim,~/.vim/bundle/processing,~/.vim/bundle/taglist_45,~/.vim/bundle/tpope-vim-ragtag,~/.vim/bundle/tpope-vim-rails,~/.vim/bundle/tpope-vim-surround,~/.vim/bundle/tsaleh-vim-tcomment,~/.vim/bundle/vim-as,~/.vim/bundle/vim-fugitive,~/.vim/bundle/vim-fuzzyfinder,~/.vim/bundle/vim-git,~/.vim/bundle/vim-jade,~/.vim/bundle/vim-markdown,~/.vim/bundle/vim-peepopen,~/.vim/bundle/vim-rooter,/Applications/MacVim.app/Contents/Resources/vim/vimfiles,/Applications/MacVim.app/Contents/Resources/vim/runtime,/Applications/MacVim.app/Contents/Resources/vim/vimfiles/after,~/.vim/bundle/msanders-snipmate.vim/after,~/.vim/after
+set runtimepath=~/.vim,~/.vim/bundle/NERD_tree,~/.vim/bundle/ack,~/.vim/bundle/endwise,~/.vim/bundle/msanders-snipmate.vim,~/.vim/bundle/processing,~/.vim/bundle/taglist_45,~/.vim/bundle/tpope-vim-ragtag,~/.vim/bundle/tpope-vim-rails,~/.vim/bundle/tpope-vim-surround,~/.vim/bundle/tsaleh-vim-tcomment,~/.vim/bundle/vim-as,~/.vim/bundle/vim-fugitive,~/.vim/bundle/vim-fuzzyfinder,~/.vim/bundle/vim-git,~/.vim/bundle/vim-jade,~/.vim/bundle/vim-markdown,~/.vim/bundle/vim-peepopen,~/.vim/bundle/vim-rooter,/usr/share/vim/vimfiles,/usr/share/vim/vim72,/usr/share/vim/vimfiles/after,~/.vim/bundle/msanders-snipmate.vim/after,~/.vim/after
 set scrolloff=3
 set shiftwidth=2
 set shortmess=atI
@@ -197,299 +168,30 @@ set smartindent
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 set tabstop=2
 set tags=tags
-set termencoding=utf-8
 set title
-set transparency=5
 set visualbell
 set whichwrap=b,s,<,>,h,l
 set wildmenu
 set wildmode=list:longest
+set window=0
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Documents/codes/svg2pdf
+cd ~/Downloads/node-v0.4.1
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +94 app.js
-badd +0 views/index.ejs
-silent! argdel *
-edit views/index.ejs
+badd +0 ~/.bash_profile
+args ~/.bash_profile
+edit ~/.bash_profile
 set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 1 + 27) / 55)
-exe '2resize ' . ((&lines * 51 + 27) / 55)
-exe 'vert 2resize ' . ((&columns * 31 + 96) / 192)
-exe '3resize ' . ((&lines * 51 + 27) / 55)
-exe 'vert 3resize ' . ((&columns * 160 + 96) / 192)
 argglobal
-enew
-file -MiniBufExplorer-
-let s:cpo_save=&cpo
-set cpo&vim
-nnoremap <buffer> 	 :call search('\[[0-9]*:[^\]]*\]'):<BS>
-nnoremap <buffer> j gj
-nnoremap <buffer> k gk
-nnoremap <buffer> p :wincmd p:<BS>
-nnoremap <buffer> <S-Tab> :call search('\[[0-9]*:[^\]]*\]','b'):<BS>
-nnoremap <buffer> <Up> gk
-nnoremap <buffer> <Down> gj
-let &cpo=s:cpo_save
-unlet s:cpo_save
-setlocal keymap=
-setlocal noarabic
 setlocal autoindent
-setlocal balloonexpr=
-setlocal nobinary
-setlocal bufhidden=delete
-setlocal nobuflisted
-setlocal buftype=nofile
-setlocal cindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-setlocal commentstring=//%s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-set cursorcolumn
-setlocal cursorcolumn
-set cursorline
-setlocal cursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != ''
-setlocal filetype=
-endif
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=tcq
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal nolist
-setlocal nomacmeta
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal nomodifiable
-setlocal nrformats=octal,hex
-set number
-setlocal nonumber
-setlocal numberwidth=4
-setlocal omnifunc=
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal smartindent
-setlocal softtabstop=0
-set spell
-setlocal spell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=
-setlocal suffixesadd=
-setlocal noswapfile
-setlocal synmaxcol=3000
-if &syntax != ''
-setlocal syntax=
-endif
-setlocal tabstop=2
-setlocal tags=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-wincmd w
-argglobal
-enew
-file NERD_tree_2
-cnoremap <buffer> <expr>  fugitive#buffer().rev()
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal balloonexpr=
-setlocal nobinary
-setlocal bufhidden=
-setlocal nobuflisted
-setlocal buftype=nofile
-setlocal cindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-setlocal commentstring=//%s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-set cursorcolumn
-setlocal cursorcolumn
-set cursorline
-setlocal cursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'nerdtree'
-setlocal filetype=nerdtree
-endif
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=tcq
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal nolist
-setlocal nomacmeta
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal nomodifiable
-setlocal nrformats=octal,hex
-set number
-setlocal nonumber
-setlocal numberwidth=4
-setlocal omnifunc=
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal smartindent
-setlocal softtabstop=0
-set spell
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=%{exists('b:NERDTreeRoot')?b:NERDTreeRoot.path.str():''}
-setlocal suffixesadd=
-setlocal noswapfile
-setlocal synmaxcol=3000
-if &syntax != 'nerdtree'
-setlocal syntax=nerdtree
-endif
-setlocal tabstop=2
-setlocal tags=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal nowinfixheight
-setlocal winfixwidth
-setlocal nowrap
-setlocal wrapmargin=0
-wincmd w
-argglobal
-let s:cpo_save=&cpo
-set cpo&vim
-imap <buffer> <SNR>28_ragtagOclose  ><Left><Left>
-inoremap <buffer> <SNR>28_ragtagOopen <%= 
-inoremap <buffer> <SNR>28_xhtmltrans <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-inoremap <buffer> <SNR>28_htmltrans <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-cnoremap <buffer> <expr>  fugitive#buffer().rev()
-imap <buffer> & <Plug>ragtagXmlV
-imap <buffer> % <Plug>ragtagUrlV
-imap <buffer> & <Plug>ragtagXmlEncode
-imap <buffer> % <Plug>ragtagUrlEncode
-inoremap <buffer> " <NL>I<!-- A -->F<NL>s
-inoremap <buffer> ' <!--  -->3hi
-imap <buffer> ] <script type="text/javascript"></script>O
-inoremap <buffer> > %>
-inoremap <buffer> < <%
-imap <buffer>  /
-let &cpo=s:cpo_save
-unlet s:cpo_save
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal balloonexpr=
 setlocal nobinary
 setlocal bufhidden=
 setlocal buflisted
@@ -498,16 +200,11 @@ setlocal cindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=s:<!--,m:\ \ \ \ ,e:-->
-setlocal commentstring=<!--%s-->
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=#%s
 setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
 set cursorcolumn
 setlocal cursorcolumn
 set cursorline
@@ -518,8 +215,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'html'
-setlocal filetype=html
+if &filetype != 'sh'
+setlocal filetype=sh
 endif
 setlocal foldcolumn=0
 setlocal foldenable
@@ -536,36 +233,32 @@ setlocal formatexpr=
 setlocal formatoptions=tcq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
+setlocal iminsert=0
+setlocal imsearch=0
 setlocal include=
 setlocal includeexpr=
-setlocal indentexpr=HtmlIndentGet(v:lnum)
-setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
+setlocal indentexpr=GetShIndent()
+setlocal indentkeys=0{,0},!^F,o,O,e,=then,=do,=else,=elif,=esac,=fi,=fin,=fil,=done
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
 setlocal nolist
-setlocal nomacmeta
 setlocal makeprg=
-setlocal matchpairs=(:),{:},[:],<:>
+setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=htmlcomplete#CompleteTags
+setlocal omnifunc=
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal shiftwidth=2
 setlocal noshortname
@@ -580,31 +273,23 @@ setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'html'
-setlocal syntax=html
+if &syntax != 'sh'
+setlocal syntax=sh
 endif
 setlocal tabstop=2
 setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
-setlocal noundofile
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 9 - ((8 * winheight(0) + 25) / 51)
+let s:l = 12 - ((11 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-9
-normal! 04l
-wincmd w
-3wincmd w
-exe '1resize ' . ((&lines * 1 + 27) / 55)
-exe '2resize ' . ((&lines * 51 + 27) / 55)
-exe 'vert 2resize ' . ((&columns * 31 + 96) / 192)
-exe '3resize ' . ((&lines * 51 + 27) / 55)
-exe 'vert 3resize ' . ((&columns * 160 + 96) / 192)
+12
+normal! 0
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

@@ -60,6 +60,7 @@ set scrolloff=3                   " Show 3 lines of context around the cursor.
 set title                         " Set the terminal's title
 
 set visualbell                    " No beeping.
+set mmta                          " Mac uses the option as metakey
 
 " INDENTATION
 set cindent
@@ -156,6 +157,12 @@ vnoremap <c-down> :m'>+<CR>gv=gv
 vnoremap <c-up> :m-2<CR>gv=gv
 
 nnoremap <CR> maO<esc>`a
+
+" quick move
+map <m-k> 5k
+map <m-j> 5j
+map <m-l> 5l
+map <m-h> 5h
 
 func Backspace()
   if col('.') == 1
