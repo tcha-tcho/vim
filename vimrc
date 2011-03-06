@@ -52,7 +52,7 @@ set number                        " Show line numbers.
 set ruler                         " Show cursor position.
 
 set incsearch                     " Highlight matches as you type.
-set hlsearch                      " Highlight matches.
+"set hlsearch                      " Highlight matches.
 
 set wrap                          " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
@@ -111,7 +111,7 @@ let g:miniBufExplMapCTabSwitchWindows = 1
 let g:miniBufExplUseSingleClick = 1
 let g:miniBufExplModSelTarget = 1
 
-nmap <silent> <leader>m :nohlsearch<CR>
+nmap <silent> <leader>m :set hlsearch! hlsearch?<CR>
 map! ii <Esc> " map ii to Esc
 map! ij <Esc> " map jj to Esc
 map! ;; <Esc> " map ;; to Esc
