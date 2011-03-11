@@ -8,9 +8,10 @@ au FocusLost * silent :wa                " Autosave!
 au BufLeave * silent :wa               " Autosave!
 set autowriteall                  " autowrite the buffers 
 
-"atlas to actionscript
+"atlas to filetypes
 au BufNewFile,BufRead *.mxml set filetype=mxml
 au BufNewFile,BufRead *.as set filetype=actionscript
+au BufNewFile,BufRead *.ejs set filetype=html
 
 set nocompatible                  " Must come first because it changes other options.
 

@@ -169,10 +169,7 @@ set backspace=2
 set backup
 set backupdir=/tmp
 set cindent
-set comments=s:<!--,m:\ \ \ \ ,e:-->
-set commentstring=<!--%s-->
 set directory=/tmp
-set noequalalways
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
 set guioptions=egmLt
@@ -182,12 +179,10 @@ set hidden
 set history=1000
 set ignorecase
 set incsearch
-set indentkeys=o,O,*<Return>,<>>,{,},!^F
 set langmenu=none
 set laststatus=2
 set macmeta
 set mouse=a
-set operatorfunc=tcomment#OperatorLine
 set printexpr=system('open\ -a\ Preview\ '.v:fname_in)\ +\ v:shell_error
 set report=0
 set ruler
@@ -216,50 +211,21 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +228 app.js
-badd +175 views/index.ejs
-badd +4 README.textile
-badd +5 models.js
 args .
-edit views/index.ejs
 set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 1 + 26) / 53)
-exe '2resize ' . ((&lines * 49 + 26) / 53)
-exe 'vert 2resize ' . ((&columns * 154 + 96) / 192)
-exe '3resize ' . ((&lines * 49 + 26) / 53)
-exe 'vert 3resize ' . ((&columns * 37 + 96) / 192)
 argglobal
 enew
-file -MiniBufExplorer-
-let s:cpo_save=&cpo
-set cpo&vim
-nnoremap <buffer> 	 :call search('\[[0-9]*:[^\]]*\]'):<BS>
-nnoremap <buffer> j gj
-nnoremap <buffer> k gk
-nnoremap <buffer> p :wincmd p:<BS>
-nnoremap <buffer> <S-Tab> :call search('\[[0-9]*:[^\]]*\]','b'):<BS>
-nnoremap <buffer> <Up> gk
-nnoremap <buffer> <Down> gj
-let &cpo=s:cpo_save
-unlet s:cpo_save
+file NERD_tree_2
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
 setlocal balloonexpr=
 setlocal nobinary
-setlocal bufhidden=delete
+setlocal bufhidden=hide
 setlocal nobuflisted
 setlocal buftype=nofile
 setlocal cindent
@@ -286,8 +252,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != ''
-setlocal filetype=
+if &filetype != 'nerdtree'
+setlocal filetype=nerdtree
 endif
 setlocal foldcolumn=0
 setlocal foldenable
@@ -309,7 +275,7 @@ setlocal imsearch=2
 setlocal include=
 setlocal includeexpr=
 setlocal indentexpr=
-setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
@@ -340,16 +306,16 @@ setlocal noshortname
 setlocal smartindent
 setlocal softtabstop=0
 set spell
-setlocal spell
+setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=
+setlocal statusline=%{exists('b:NERDTreeRoot')?b:NERDTreeRoot.path.str():''}
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != ''
-setlocal syntax=
+if &syntax != 'nerdtree'
+setlocal syntax=nerdtree
 endif
 setlocal tabstop=2
 setlocal tags=
@@ -358,267 +324,9 @@ setlocal thesaurus=
 setlocal noundofile
 setlocal nowinfixheight
 setlocal nowinfixwidth
-setlocal wrap
+setlocal nowrap
 setlocal wrapmargin=0
 lcd ~/Documents/codes/timepimp
-wincmd w
-argglobal
-let s:cpo_save=&cpo
-set cpo&vim
-imap <buffer> <SNR>28_ragtagOclose  ><Left><Left>
-inoremap <buffer> <SNR>28_ragtagOopen <%= 
-inoremap <buffer> <SNR>28_xhtmltrans <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-inoremap <buffer> <SNR>28_htmltrans <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-cnoremap <buffer> <expr>  fugitive#buffer().rev()
-imap <buffer> & <Plug>ragtagXmlV
-imap <buffer> % <Plug>ragtagUrlV
-imap <buffer> & <Plug>ragtagXmlEncode
-imap <buffer> % <Plug>ragtagUrlEncode
-inoremap <buffer> " <NL>I<!-- A -->F<NL>s
-inoremap <buffer> ' <!--  -->3hi
-imap <buffer> ] <script type="text/javascript"></script>O
-inoremap <buffer> > %>
-inoremap <buffer> < <%
-imap <buffer>  /
-let &cpo=s:cpo_save
-unlet s:cpo_save
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal balloonexpr=
-setlocal nobinary
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal cindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=s:<!--,m:\ \ \ \ ,e:-->
-setlocal commentstring=<!--%s-->
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-set cursorcolumn
-setlocal cursorcolumn
-set cursorline
-setlocal cursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'html'
-setlocal filetype=html
-endif
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=tcq
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=HtmlIndentGet(v:lnum)
-setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal nolist
-setlocal macmeta
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:],<:>
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=htmlcomplete#CompleteTags
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal smartindent
-setlocal softtabstop=0
-set spell
-setlocal spell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'html'
-setlocal syntax=html
-endif
-setlocal tabstop=2
-setlocal tags=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-let s:l = 164 - ((6 * winheight(0) + 24) / 49)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-164
-normal! 010l
-lcd ~/Documents/codes/timepimp
-wincmd w
-argglobal
-edit ~/Documents/codes/timepimp/app.js
-cnoremap <buffer> <expr>  fugitive#buffer().rev()
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal balloonexpr=
-setlocal nobinary
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal cindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=j1,J1
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-setlocal commentstring=//%s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-set cursorcolumn
-setlocal cursorcolumn
-set cursorline
-setlocal cursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'javascript'
-setlocal filetype=javascript
-endif
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal nolist
-setlocal macmeta
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=javascriptcomplete#CompleteJS
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal smartindent
-setlocal softtabstop=0
-set spell
-setlocal spell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'javascript'
-setlocal syntax=javascript
-endif
-setlocal tabstop=2
-setlocal tags=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-let s:l = 209 - ((31 * winheight(0) + 24) / 49)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-209
-normal! 013l
-lcd ~/Documents/codes/timepimp
-wincmd w
-2wincmd w
-exe '1resize ' . ((&lines * 1 + 26) / 53)
-exe '2resize ' . ((&lines * 49 + 26) / 53)
-exe 'vert 2resize ' . ((&columns * 154 + 96) / 192)
-exe '3resize ' . ((&lines * 49 + 26) / 53)
-exe 'vert 3resize ' . ((&columns * 37 + 96) / 192)
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
