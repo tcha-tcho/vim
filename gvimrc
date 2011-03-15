@@ -9,4 +9,3 @@ set lines=75 columns=275          " Window dimensions.
 
 set guioptions-=r                 " Don't show right scrollbar
 
-
