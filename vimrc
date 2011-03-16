@@ -13,6 +13,7 @@ set autowriteall                  " autowrite the buffers
 au BufNewFile,BufRead *.mxml set filetype=mxml
 au BufNewFile,BufRead *.as set filetype=actionscript
 au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.json set filetype=javascript
 
 silent! call pathogen#runtime_append_all_bundles()
 set nocompatible                  " Must come first because it changes other options.
