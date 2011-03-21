@@ -1,8 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/Users/malpeli/Documents/codes/timepimp'
 let g:netrw_dirhist_2='/Users/malpeli/Downloads/mobiscroll-1.0rc2'
 let g:netrw_dirhist_3='/Users/malpeli/Downloads/tp'
 let g:netrw_dirhist_4='/Users/malpeli/Documents/codes/timepimp'
 let g:netrw_dirhist_5='/Users/malpeli'
 let g:netrw_dirhist_6='/Users/malpeli/Documents/codes/timepimp'
+let g:netrw_dirhist_7='/Users/malpeli'
+let g:netrw_dirhist_8='/Users/malpeli/Documents/codes/timepimp'
