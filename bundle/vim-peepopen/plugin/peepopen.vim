@@ -19,7 +19,6 @@
 if &cp || exists("g:peepopen_loaded") && g:peepopen_loaded
   finish
 endif
-
 let g:peepopen_loaded = 1
 let g:peepopen_cwd = getcwd()
 
@@ -30,6 +29,8 @@ function s:LaunchPeepOpenViaVim()
  let cwd = g:peepopen_cwd
  silent exe "!open -a PeepOpen " . shellescape(cwd)
 endfunction
+
+
 
 command! PeepOpen :call <SID>LaunchPeepOpenViaVim()
 
