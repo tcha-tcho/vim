@@ -130,7 +130,8 @@ inoremap <c-up> <Esc>:m-2<CR>==gi
 vnoremap <c-down> :m'>+<CR>gv=gv
 vnoremap <c-up> :m-2<CR>gv=gv
 
-nnoremap <CR> maO<esc>`a
+nnoremap <expr> <CR> (&buftype=='quickfix' ? "<CR>" : "maO<Esc>`a")
+" nnoremap <CR> maO<esc>`a
 
 " quick move
 map <m-k> 5k
@@ -161,6 +162,25 @@ else
   set directory=/tmp
   set backupdir=/tmp
 end
+
+let g:gitgrepprg="git\\ grep\\ -n"
+let g:gitroot="`git rev-parse --show-cdup`"
+
+function! GitGrep(args)
+    let grepprg_bak=&grepprg
+    exec "set grepprg=" . g:gitgrepprg
+    execute "silent! grep! -i -I -n " . a:args . " " . g:gitroot
+    botright copen
+    let &grepprg=grepprg_bak
+    exec "redraw!"
+endfunction
+
+func GitGrepWord()
+  normal! "zyiw
+  call GitGrep(getreg('z'))
+endf
+nmap <C-x><C-x> :call GitGrepWord()<CR>
+command -nargs=? G call GitGrep(<f-args>)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Useful abbrevs
