@@ -135,9 +135,16 @@ nnoremap <expr> <CR> (&buftype=='quickfix' ? "<CR>" : "maO<Esc>`a")
 
 " quick move
 map <m-k> 5k
+map <D-k> <c-U>
+
 map <m-j> 5j
+map <D-j> <c-D>
+
 map <m-l> 5l
+map <D-l> $
+
 map <m-h> 5h
+map <D-h> 0w
 
 func Backspace()
   if col('.') == 1
